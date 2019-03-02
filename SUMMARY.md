@@ -9,5 +9,5 @@
 ## Algorithm
 
 * [Two Pointers](algorithm-1/two-pointers/README.md)
-  * [Untitled](algorithm-1/two-pointers/untitled.md)
+  * [3Sum](algorithm-1/two-pointers/untitled.md)
 
