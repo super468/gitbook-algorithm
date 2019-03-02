@@ -1,4 +1,4 @@
-# Table of contents
+# Summary
 
 * [Preface](README.md)
 
