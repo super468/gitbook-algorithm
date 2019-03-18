@@ -2,8 +2,7 @@
 
 Given a non-negative integer num represented as a string, remove kdigits from the number so that the new number is the smallest possible.
 
-**Note:**  
-
+**Note:**
 
 * The length of num is less than 10002 and will be ≥ k.
 * The given num does not contain any leading zero.
@@ -32,7 +31,9 @@ Output: "0"
 Explanation: Remove all the digits from the number and it is left with nothing which is 0.
 ```
 
-解法：TODO
+解法：
+
+拿到这道题，首先应该想的是，如果去除一个的话，怎么去除？应该是从左向右，找到比其右邻居大的一个元素，将其删除，如果删两个的话，就是在这个基础上重复上述的操作，这样，我们就需要遍历k次string，时间复杂度为O\(NK\)。我们能不能保存删除节点之前的信息呢？利用stack来存之前遍历过的元素即可！！
 
 代码：
 
