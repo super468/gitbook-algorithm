@@ -8,6 +8,11 @@
   * [Add Two Numbers II](data-structure/stack/add-two-numbers-ii.md)
   * [Remove K Digits](data-structure/stack/remove-k-digits.md)
 * [String](data-structure/string.md)
+* [Binary Tree](data-structure/binary-tree/README.md)
+  * [Preorder Traversal](data-structure/binary-tree/preorder-traversal.md)
+  * [Inorder Traversal](data-structure/binary-tree/inorder-traversal.md)
+  * [Postorder Traversal](data-structure/binary-tree/postorder-traversal.md)
+  * [Binary Tree Maximum Path Sum](data-structure/binary-tree/binary-tree-maximum-path-sum.md)
 
 ## Algorithm
 
