@@ -20,4 +20,6 @@
   * [3Sum](algorithm/two-pointers/untitled.md)
 * [Sort](algorithm/sort/README.md)
   * [QuickSort](algorithm/sort/quicksort.md)
+* [Dynamic Programming](algorithm/dynamic-programming/README.md)
+  * [Edit Distance](algorithm/dynamic-programming/edit-distance.md)
 
