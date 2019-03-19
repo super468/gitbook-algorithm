@@ -18,4 +18,6 @@
 
 * [Two Pointers](algorithm/two-pointers/README.md)
   * [3Sum](algorithm/two-pointers/untitled.md)
+* [Sort](algorithm/sort/README.md)
+  * [QuickSort](algorithm/sort/quicksort.md)
 
