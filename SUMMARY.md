@@ -12,6 +12,7 @@
   * [Preorder Traversal](data-structure/binary-tree/preorder-traversal.md)
   * [Inorder Traversal](data-structure/binary-tree/inorder-traversal.md)
   * [Postorder Traversal](data-structure/binary-tree/postorder-traversal.md)
+  * [Path Sum](data-structure/binary-tree/path-sum.md)
   * [Binary Tree Maximum Path Sum](data-structure/binary-tree/binary-tree-maximum-path-sum.md)
 
 ## Algorithm
