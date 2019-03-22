@@ -29,7 +29,7 @@ Output: [3,2,1]
 * 找到当前节点的最左节点，如果它有右节点就先访问右节点，最后访问父节点。
 * 我们需要一个last节点来记录上次访问的节点，如果是左节点，就访问右节点，如果是右节点，就访问父节点。这样可以保证只访问一次右节点。
 
-代码：
+代码1：
 
 ```java
 class Solution {
@@ -51,6 +51,33 @@ class Solution {
                     last = top;
                     stack.pop();
                 }
+            }
+        }
+        return list;
+    }
+}
+```
+
+代码2：
+
+```java
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        List<Integer> list = new ArrayList<>();
+        TreeNode pre = null;
+        if(root == null) return list;
+        stack.push(root);
+        while(!stack.empty()){
+            TreeNode top = stack.peek();
+            if((top.left == null && top.right == null) ||
+               (pre != null && (pre == top.right || pre == top.left))){
+                list.add(top.val);
+                pre = top;
+                stack.pop();
+            } else{
+                if(top.right != null) stack.push(top.right);
+                if(top.left != null) stack.push(top.left);
             }
         }
         return list;
