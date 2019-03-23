@@ -23,4 +23,6 @@
   * [QuickSort](algorithm/sort/quicksort.md)
 * [Dynamic Programming](algorithm/dynamic-programming/README.md)
   * [Edit Distance](algorithm/dynamic-programming/edit-distance.md)
+* [Union Find](algorithm/union-find/README.md)
+  * [Friend Circles](algorithm/union-find/untitled.md)
 
