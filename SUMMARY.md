@@ -18,6 +18,8 @@
 ## Algorithm
 
 * [Two Pointers](algorithm/two-pointers/README.md)
+  * [Longest Substring with At Most K Distinct Characters](algorithm/two-pointers/longest-substring-with-at-most-k-distinct-characters.md)
+  * [Longest Substring with At Most Two Distinct Characters](algorithm/two-pointers/longest-substring-with-at-most-two-distinct-characters.md)
   * [3Sum](algorithm/two-pointers/untitled.md)
 * [Sort](algorithm/sort/README.md)
   * [QuickSort](algorithm/sort/quicksort.md)
