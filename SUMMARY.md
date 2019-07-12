@@ -22,6 +22,7 @@
 ## Algorithm
 
 * [Binary Search](algorithm/binary-search/README.md)
+  * [Search in Rotated Sorted Array](algorithm/binary-search/search-in-rotated-sorted-array.md)
   * [Median of Two Sorted Arrays](algorithm/binary-search/median-of-two-sorted-arrays.md)
 * [Two Pointers](algorithm/two-pointers/README.md)
   * [Longest Substring with At Most K Distinct Characters](algorithm/two-pointers/longest-substring-with-at-most-k-distinct-characters.md)

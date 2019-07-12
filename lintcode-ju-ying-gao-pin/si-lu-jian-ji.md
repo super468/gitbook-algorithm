@@ -187,3 +187,72 @@ public ListNode mergeList(ListNode list1, ListNode list2){
 
 3和5是O\(nlogK\)， 5难写一点，上面是5的代码，主要集中在mergeList 要写的简洁，partition用recursive简洁一点
 
+## 100. 删除排序数组中的重复数字
+
+```java
+public int removeDuplicates(int[] nums) {
+    int length = nums.length;
+    if(length < 2) return length;
+    int left = 0;
+    for(int right = 0; right < length; right++){
+        if(nums[left] != nums[right]){
+            left++;
+            nums[left] = nums[right];
+        }
+    }
+    return left + 1;
+}
+```
+
+这道题用两个指针，left代表目前所有的不重复的数字，right则寻找下一个不与left重复的数，注意最后返回的是left+1
+
+## 64. 合并排序数组
+
+```java
+public void mergeSortedArray(int[] A, int m, int[] B, int n) {
+    // write your code here
+    int p1 = m - 1, p2 = n - 1, p = m + n - 1;
+    while((p1 >= 0) && (p2 >= 0)){
+        A[p--] = A[p1] > B[p2] ? A[p1--] : B[p2--];
+    }
+    System.arraycopy(B, 0, A, 0, p2 + 1);
+}
+```
+
+A数组有足够的空间，也就是说后面是空白的。如果用两个指针从前往后merge的话，就需要额外的空间复制A数组。但是如果从后往前则可以利用A的空白部分。
+
+Following is the declaration for **java.lang.System.arraycopy\(\)** method
+
+```java
+public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
+```
+
+* **src** − This is the source array.
+* **srcPos** − This is the starting position in the source array.
+* **dest** − This is the destination array.
+* **destPos** − This is the starting position in the destination data.
+* **length** − This is the number of array elements to be copied.
+
+## 62. 搜索旋转排序数组
+
+[Search in Rotated Sorted Array](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-Lj_tURzhrNuHqe7wW3k/algorithm/binary-search/search-in-rotated-sorted-array)
+
+## 415. 有效回文串
+
+```java
+public boolean isPalindrome(String s) {
+    // write your code here
+    int left = 0, right = s.length() - 1;
+    while(left < right){
+        while(left < right && !Character.isLetterOrDigit(s.charAt(left))) left++;
+        while(left < right && !Character.isLetterOrDigit(s.charAt(right))) right--;
+        if(Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+```
+
+此题易错,注意left和right的设置,这里终结条件是left == right, 则肯定是回文的。注意不是left &lt;= right
+
