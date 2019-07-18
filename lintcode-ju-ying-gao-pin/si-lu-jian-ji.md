@@ -187,6 +187,8 @@ public ListNode mergeList(ListNode list1, ListNode list2){
 
 3和5是O\(nlogK\)， 5难写一点，上面是5的代码，主要集中在mergeList 要写的简洁，partition用recursive简洁一点
 
+**Update 1: 这个mergeTwoList recursive的写法不要忘记每次往后挪head**
+
 ## 100. 删除排序数组中的重复数字
 
 ```java
@@ -255,4 +257,184 @@ public boolean isPalindrome(String s) {
 ```
 
 此题易错,注意left和right的设置,这里终结条件是left == right, 则肯定是回文的。注意不是left &lt;= right
+
+## 512. 解码方法
+
+```java
+public int numDecodings(String s) {
+    int length = s.length();
+    if(length < 1) return 0;
+    int[] dp = new int[length + 1];
+    dp[0] = 1;
+    dp[1] = (s.charAt(0) != '0') ? 1 : 0;
+    for(int i = 2; i <= s.length(); i++){
+        int num1 = Integer.valueOf(s.substring(i - 1, i));
+        int num2 = Integer.valueOf(s.substring(i - 2, i));
+        if(num1 >= 1 && num1 <= 9) dp[i] += dp[i - 1];
+        if(num2 >= 10 && num2 <= 26) dp[i] += dp[i - 2];
+    }
+    return dp[length];
+}
+```
+
+此题使用一维DP，一定要注意0的情况，比如在首位以及10，20等，所以需要使用valueOf
+
+## 433. 岛屿数目
+
+```java
+public int numIslands(boolean[][] grid) {
+    // write your code here
+    for(int i = 0; i < grid.length; i++){
+        for(int j = 0; j < grid[0].length; j++){
+            if(grid[i][j] == true){
+                count++;
+                DFS(grid, i, j);
+            }
+        }
+    }
+    return count;
+}
+    
+public void DFS(boolean[][] grid, int i, int j){
+    if(i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == false) return;
+    grid[i][j] = false;
+    DFS(grid, i + 1, j);
+    DFS(grid, i - 1, j);
+    DFS(grid, i, j + 1);
+    DFS(grid, i, j - 1);
+}
+```
+
+DFS，BFS，Union Find 三种做法，DFS直接秒
+
+## 102. 二叉树的层次遍历
+
+**DFS**
+
+```java
+public List<List<Integer>> levelOrder(TreeNode root) {
+    //preorder 3, 9 20, 15, 7
+    //inorder 9, 3, 15, 20, 7
+    //postorder 9, 15, 7, 20, 3
+    List<List<Integer>> res = new ArrayList<>();
+    preOrder(root, 1, res);
+    return res;
+}
+    
+public void preOrder(TreeNode node, int depth, List<List<Integer>> res){
+    if(node == null) return;
+    if(depth > res.size()){
+        res.add(new ArrayList<>());
+    }
+    res.get(depth - 1).add(node.val);
+    
+    preOrder(node.left, depth + 1, res);
+    preOrder(node.right, depth + 1, res);
+}
+```
+
+BFS
+
+```java
+public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> res = new ArrayList<>();
+    if(root == null) return res;
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    while(!queue.isEmpty()){
+        List<Integer> list = new ArrayList<>();
+        for(int k = queue.size() - 1; k >= 0; k--){
+            TreeNode top = queue.poll();
+            list.add(top.val);
+            if(top.left != null) queue.offer(top.left);
+            if(top.right != null) queue.offer(top.right);
+        }
+        res.add(list);
+    }
+    return res;
+}
+```
+
+## 95. 验证二叉树
+
+**Recursion**
+
+```java
+public boolean isValidBST(TreeNode root) {
+    return isValid(root, null, null);
+}
+
+public boolean isValid(TreeNode node, Integer low, Integer high){
+    if(node == null) return true;
+    int val = node.val
+    if(low != null && node.val <= low) return false;
+    if(high != null && node.val >= high) return false;
+    
+    return isValid(node.left, low, node.val) && isValid(node.right, node.val, high);
+}
+```
+
+**Inorder Traversal**
+
+```java
+public boolean isValidBST(TreeNode root) {
+    Stack<TreeNode> stack = new Stack<>();
+    if(root == null) return true;
+    double pre = - Double.MAX_VALUE;
+    TreeNode cur = root;
+    while(cur != null || !stack.isEmpty()){
+        if(cur != null){
+            stack.push(cur);
+            cur = cur.left;
+        } else{
+            TreeNode top = stack.pop();
+            if(pre >= top.val) return false;
+            pre = top.val;
+            if(top.right != null)
+                cur = top.right;
+        }
+    }
+    return true;
+}
+```
+
+Recursion的方法让我一阵好想，给两个子树一个范围确实是一个妙招
+
+## 421. 简化路径
+
+```java
+public String simplifyPath(String path) {
+    Stack<String> stack = new Stack<>();
+    String[] strs = path.split("/");
+    Set<String> skip = new HashSet<>(Arrays.asList("..",".",""));
+    for(String str : strs){
+        if(str.equals("..") && !stack.isEmpty()) stack.pop();
+        else if(!skip.contains(str)) stack.push(str);
+    }
+    String s = "";
+    while(!stack.isEmpty()){
+        s = "/" + stack.pop() + s;
+    }
+    return s.equals("") ? "/" : s;
+}
+```
+
+注意path split的时候，会有可能split出空字符串“”
+
+## 88. 最近公共祖先
+
+```java
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if(root == null || p == null || q == null) return null;
+    if(root == p || root == q) return root;
+    TreeNode left = lowestCommonAncestor(root.left, p, q);
+    TreeNode right = lowestCommonAncestor(root.right, p, q);
+    if(left != null && right != null) return root;
+    if(left == null) return right;
+    if(right == null) return left;
+    return null;
+}
+```
+
+[Lowest Common Ancestor of a Binary Tree](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-LjprX8IwFnofjlNvHvu/data-structure/binary-tree/lowest-common-ancestor-of-a-binary-tree)
 

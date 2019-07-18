@@ -16,6 +16,7 @@
   * [Postorder Traversal](data-structure/binary-tree/postorder-traversal.md)
   * [Path Sum](data-structure/binary-tree/path-sum.md)
   * [Binary Tree Maximum Path Sum](data-structure/binary-tree/binary-tree-maximum-path-sum.md)
+  * [Lowest Common Ancestor of a Binary Tree](data-structure/binary-tree/lowest-common-ancestor-of-a-binary-tree.md)
 * [Heap](data-structure/heap/README.md)
   * [Meeting Rooms II](data-structure/heap/meeting-rooms-ii.md)
 
