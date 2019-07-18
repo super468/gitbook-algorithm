@@ -19,6 +19,8 @@
   * [Lowest Common Ancestor of a Binary Tree](data-structure/binary-tree/lowest-common-ancestor-of-a-binary-tree.md)
 * [Heap](data-structure/heap/README.md)
   * [Meeting Rooms II](data-structure/heap/meeting-rooms-ii.md)
+* [Trie](data-structure/trie/README.md)
+  * [Implement Trie \(Prefix Tree\)](data-structure/trie/implement-trie-prefix-tree.md)
 
 ## Algorithm
 

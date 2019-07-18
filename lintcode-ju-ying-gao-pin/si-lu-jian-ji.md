@@ -438,3 +438,89 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
 [Lowest Common Ancestor of a Binary Tree](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-LjprX8IwFnofjlNvHvu/data-structure/binary-tree/lowest-common-ancestor-of-a-binary-tree)
 
+## 450. K组翻转链表
+
+```java
+public ListNode reverseKGroup(ListNode head, int k) {
+    if(head==null||k==1)
+        return head;
+ 
+    ListNode fake = new ListNode(0);
+    fake.next = head;
+    ListNode prev = fake;
+    int i=0;
+ 
+    ListNode p = head;
+    while(p!=null){
+        i++;
+        if(i%k==0){
+            prev = reverse(prev, p.next);
+            p = prev.next;
+        }else{
+            p = p.next; 
+        }
+    }
+ 
+    return fake.next; 
+}
+
+public ListNode reverse(ListNode prev, ListNode next){
+    ListNode last = prev.next;
+    ListNode curr = last.next;
+ 
+    while(curr != next){
+        last.next = curr.next;
+        curr.next = prev.next;
+        prev.next = curr;
+        curr = last.next;
+    }
+ 
+    return last; 
+}
+```
+
+先翻转prev 和 next里面的链表，写的太精妙了，需要多加复习。我的代码提交有点tedious
+
+## 442. 实现Trie （前缀树）
+
+[Implement Trie \(Prefix Tree\)](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-Lk4AD7RzKmYas06p__y/data-structure/trie/implement-trie-prefix-tree)
+
+## 57. 三数之和
+
+此题坑点有二,
+
+1. 是第二个指针一定要比第一个指针大
+2.  avoid duplicate
+
+[3Sum](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-Lk4AD7RzKmYas06p__y/algorithm/two-pointers/untitled)
+
+## 156. 合并区间
+
+```java
+public class Solution {
+    /**
+     * @param intervals: interval list.
+     * @return: A new interval list.
+     */
+    public List<Interval> merge(List<Interval> intervals) {
+        // write your code here
+        List<Interval> list = new ArrayList<>();
+        if(intervals == null || intervals.size() == 0) return list;
+        Collections.sort(intervals, (a, b) -> a.start - b.start);
+        int start = intervals.get(0).start;
+        int end = intervals.get(0).end;
+        for(Interval interval : intervals){
+            if(interval.start <= end){
+                end = Math.max(end, interval.end);
+            } else{
+                list.add(new Interval(start, end));
+                start = interval.start;
+                end = interval.end;
+            }
+        }
+        list.add(new Interval(start, end));
+        return list;
+    }
+}
+```
+
