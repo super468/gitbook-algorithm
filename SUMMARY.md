@@ -24,6 +24,9 @@
 
 ## Algorithm
 
+* [DFS BFS Backtracking](algorithm/dfs-and-and-bfs-and-and-backtracking/README.md)
+  * [Word Search](algorithm/dfs-and-and-bfs-and-and-backtracking/word-search.md)
+  * [Word SearchII](algorithm/dfs-and-and-bfs-and-and-backtracking/word-searchii.md)
 * [Binary Search](algorithm/binary-search/README.md)
   * [Search in Rotated Sorted Array](algorithm/binary-search/search-in-rotated-sorted-array.md)
   * [Median of Two Sorted Arrays](algorithm/binary-search/median-of-two-sorted-arrays.md)
@@ -32,6 +35,7 @@
   * [Longest Substring with At Most Two Distinct Characters](algorithm/two-pointers/longest-substring-with-at-most-two-distinct-characters.md)
   * [3Sum](algorithm/two-pointers/untitled.md)
   * [Permutation in String](algorithm/two-pointers/permutation-in-string.md)
+  * [Sort Colors](algorithm/two-pointers/sort-colors.md)
 * [Sort](algorithm/sort/README.md)
   * [QuickSort](algorithm/sort/quicksort.md)
 * [Dynamic Programming](algorithm/dynamic-programming/README.md)

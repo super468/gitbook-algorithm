@@ -19,7 +19,7 @@ Output: [1,3,2]
 
 **Follow up:** Recursive solution is trivial, could you do it iteratively?
 
-代码：
+代码1：
 
 ```java
 class Solution {
@@ -35,10 +35,31 @@ class Solution {
             } else{
                 TreeNode top = stack.pop();
                 list.add(top.val);
-                if(top.right != null){
-                    cur = top.right;
-                }
+                cur = top.right;
             }
+        }
+        return list;
+    }
+}
+```
+
+代码2：
+
+```java
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if(root == null) return list;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while(cur != null || !stack.empty()){
+            while(cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode top = stack.pop();
+            list.add(top.val);
+            cur = top.right;
         }
         return list;
     }

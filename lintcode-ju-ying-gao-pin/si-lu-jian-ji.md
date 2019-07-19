@@ -67,7 +67,7 @@ public ListNode addLists(ListNode l1, ListNode l2) {
 
 ## 134. LRU
 
-[LRU Cache](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-LjKqe-wDGlLRg0wa1mI/data-structure/map/lru-cache)
+{% page-ref page="../data-structure/map/lru-cache.md" %}
 
 ## 200. 最长回文子串
 
@@ -237,7 +237,7 @@ public static void arraycopy(Object src, int srcPos, Object dest, int destPos, i
 
 ## 62. 搜索旋转排序数组
 
-[Search in Rotated Sorted Array](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-Lj_tURzhrNuHqe7wW3k/algorithm/binary-search/search-in-rotated-sorted-array)
+{% page-ref page="../algorithm/binary-search/search-in-rotated-sorted-array.md" %}
 
 ## 415. 有效回文串
 
@@ -436,7 +436,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 }
 ```
 
-[Lowest Common Ancestor of a Binary Tree](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-LjprX8IwFnofjlNvHvu/data-structure/binary-tree/lowest-common-ancestor-of-a-binary-tree)
+{% page-ref page="../data-structure/binary-tree/lowest-common-ancestor-of-a-binary-tree.md" %}
 
 ## 450. K组翻转链表
 
@@ -483,7 +483,7 @@ public ListNode reverse(ListNode prev, ListNode next){
 
 ## 442. 实现Trie （前缀树）
 
-[Implement Trie \(Prefix Tree\)](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-Lk4AD7RzKmYas06p__y/data-structure/trie/implement-trie-prefix-tree)
+{% page-ref page="../data-structure/trie/implement-trie-prefix-tree.md" %}
 
 ## 57. 三数之和
 
@@ -492,7 +492,7 @@ public ListNode reverse(ListNode prev, ListNode next){
 1. 是第二个指针一定要比第一个指针大
 2.  avoid duplicate
 
-[3Sum](https://app.gitbook.com/@herots/s/algorithm/~/edit/drafts/-Lk4AD7RzKmYas06p__y/algorithm/two-pointers/untitled)
+{% page-ref page="../algorithm/two-pointers/untitled.md" %}
 
 ## 156. 合并区间
 
@@ -523,4 +523,49 @@ public class Solution {
     }
 }
 ```
+
+## 86. 二叉查找树迭代器
+
+```java
+class BSTIterator {
+
+    Stack<TreeNode> stack = new Stack<>();
+    TreeNode cur = null;
+    public BSTIterator(TreeNode root) {
+        cur = root;
+    }
+    
+    /** @return the next smallest number */
+    public int next() {
+        if(cur != null){
+            stack.push(cur);
+            cur = cur.left;
+            return next();
+        } else{
+            TreeNode top = stack.pop();
+            cur = top.right;
+            return top.val;
+        }
+    }
+    
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return cur != null || !stack.isEmpty();
+    }
+}
+```
+
+基本就是iteratIve inorder traverse 
+
+## 146. 颜色分类
+
+{% page-ref page="../algorithm/two-pointers/sort-colors.md" %}
+
+## 123. 单词搜索
+
+{% page-ref page="../algorithm/dfs-and-and-bfs-and-and-backtracking/word-search.md" %}
+
+## 132. 单词搜索II
+
+
 
