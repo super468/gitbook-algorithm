@@ -567,5 +567,9 @@ class BSTIterator {
 
 ## 132. 单词搜索II
 
+{% page-ref page="../algorithm/dfs-and-and-bfs-and-and-backtracking/word-searchii.md" %}
 
+## 1534. 将二进制搜索树转换为已排序的双向链接列表
+
+{% page-ref page="../data-structure/binary-tree/convert-binary-search-tree-to-sorted-doubly-linked-list.md" %}
 

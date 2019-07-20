@@ -49,7 +49,7 @@ class Solution {
     public boolean backtracking(char[][] board, String word, int index, int row, int col){
         // 判断所有不合法的情况，数组越界，节点已经访问过，以及其他为false的情况
         if(row < 0 || row >= board.length || col < 0 || col >= board[0].length || board[row][col] != word.charAt(index)) return false;
-        // 判断结束搜索的情况
+        // 判断搜索成功的情况
         if(word.length() == index) return true;
         // 搜索
         board[row][col] ^= 256;
