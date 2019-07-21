@@ -187,7 +187,7 @@ public ListNode mergeList(ListNode list1, ListNode list2){
 
 3和5是O\(nlogK\)， 5难写一点，上面是5的代码，主要集中在mergeList 要写的简洁，partition用recursive简洁一点
 
-**Update 1: 这个mergeTwoList recursive的写法不要忘记每次往后挪head**
+**Update 1: 这个mergeTwoList iterative的写法不要忘记每次往后挪head**
 
 ## 100. 删除排序数组中的重复数字
 
