@@ -15,24 +15,21 @@ description: Leetcode 159
 
 
 ```java
-    
 class Solution { 
-public int lengthOfLongestSubstringTwoDistinct(String s) { 
-    if(s.length() <= 2) return s.length();
-    int[] chars = new int[256];
-    int res = 0;
-
-    for(int slow = 0, fast = 0, diff = 0; fast < s.length(); ){
-        if(chars[s.charAt(fast++)]++ == 0) diff++;
-
-        while(diff == 3 && if(--chars[s.charAt(slow++)] == 0)) diff--;
-        
-        res = Math.max(res, fast - slow);
+    public int lengthOfLongestSubstringTwoDistinct(String s) { 
+        if(s.length() <= 2) return s.length();
+        int[] chars = new int[256];
+        int res = 0;
+    
+        for(int slow = 0, fast = 0, diff = 0; fast < s.length(); ){
+            if(chars[s.charAt(fast++)]++ == 0) diff++;
+    
+            while(diff == 3 && if(--chars[s.charAt(slow++)] == 0)) diff--;
+            
+            res = Math.max(res, fast - slow);
+        }
+        return res;
     }
-    return res;
-
 }
 ```
-
-}
 
