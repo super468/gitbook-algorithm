@@ -69,7 +69,13 @@ class Solution {
 
 ## 253. Meeting Room II
 
+```text
+TODO
+```
+
 ## 973. K Closet Points to Origin
+
+{% page-ref page="../algorithm/sort/quicksort/k-closest-points-to-origin-todo.md" %}
 
 ## 238. Product Array Except Self
 
@@ -211,5 +217,37 @@ class Solution {
 TODO
 ```
 
+## 621. Task Scheduler
 
+```text
+TODO
+```
+
+## 523. Continuous Subarray Sum
+
+O\(N\)的做法还是用prefix sum, 但是利用的一个公式 \(a + \(nk\)\) % k = a % k
+
+需要注意处理sum = 0 的情况
+
+```java
+class Solution {
+    public boolean checkSubarraySum(int[] nums, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        map.put(0, -1);
+        for(int i = 0; i < nums.length; i++){
+            sum += nums[i];
+            if(k != 0) sum %= k;
+            if(map.containsKey(sum)){
+                if(i - 2 >= map.get(sum)){
+                    return true;
+                }
+            } else{
+                map.put(sum, i);
+            }
+        }
+        return false;
+    }
+}
+```
 
