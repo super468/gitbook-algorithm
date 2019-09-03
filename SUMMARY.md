@@ -55,8 +55,10 @@
     * [Alien Dictionary\(TODO\)](algorithm/sort/topological-sort/alien-dictionary.md)
   * [QuickSort](algorithm/sort/quicksort/README.md)
     * [K Closest Points to Origin\(TODO\)](algorithm/sort/quicksort/k-closest-points-to-origin-todo.md)
-* [Divide and Conquer](algorithm/divide-and-conquer.md)
+* [Divide and Conquer](algorithm/divide-and-conquer/README.md)
+  * [Merge K Sorted List\(TODO\)](algorithm/divide-and-conquer/merge-k-sorted-list-todo.md)
 * [Dynamic Programming](algorithm/dynamic-programming/README.md)
+  * [Word Break](algorithm/dynamic-programming/word-break.md)
   * [Edit Distance](algorithm/dynamic-programming/edit-distance.md)
 * [Union Find](algorithm/union-find/README.md)
   * [Friend Circles](algorithm/union-find/untitled.md)
@@ -70,9 +72,4 @@
 
 * [易错点](leetcode-fb-gao-pin/yi-cuo-dian.md)
 * [思路简记](leetcode-fb-gao-pin/si-lu-jian-ji.md)
-
-## 剑指Offer
-
-* [排序](jian-zhi-offer/pai-xu.md)
-* [队列和栈](jian-zhi-offer/dui-lie-he-zhan.md)
 

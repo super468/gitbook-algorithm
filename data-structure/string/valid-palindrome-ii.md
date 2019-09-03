@@ -29,6 +29,8 @@ Explanation: You could delete the character 'c'.
 
 ## 思路
 
+我感觉对于palindrome的情况百分之九十的解法都是用two pointers
+
 暴力解即对于string的每一个元素，删掉它，然后判断剩下的string是否是回文。时间复杂度O\(n^2\)。考虑回文的特性，我们可以知道对于string\[i:j\]，它成为回文的条件有两个：
 
 1. string\[i\] == string\[j\]
@@ -40,7 +42,7 @@ Explanation: You could delete the character 'c'.
 
 Follow up: 如果让你最多删除K个character，怎么做？
 
-把1扩展成K，利用recursion，如果两个字符不相等就减去一个字符，把问题转换成k - 1的问题，因为我们在每一步的时候有两个选择删除，总共的可能性就是O\(2^K\)，每一个isPalindrome都是O\(N\)，所以最后的时间复杂度是O\(2^k \*n\)
+把1扩展成K，利用recursion，如果两个字符不相等就减去一个字符，把问题转换成k - 1的问题，因为我们在每一步的时候有两个选择删除，总共的可能性就是O\(2^K\)，每个isPalindromeO\(N\)，所以最后的时间复杂度是O\(2^k \* n\)
 
 ## 复杂度
 
@@ -50,7 +52,7 @@ Follow up: 如果让你最多删除K个character，怎么做？
 删除K个
 
 时间：O\(2^k \* n\)  
-空间：O\(2^k\)
+空间：O\(k + n\)  n是应该递归调用栈
 
 ## 代码
 

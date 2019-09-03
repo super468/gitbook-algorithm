@@ -217,6 +217,8 @@ class Solution {
 TODO
 ```
 
+## 278. First Bad Version
+
 ## 621. Task Scheduler
 
 ```text
@@ -250,4 +252,138 @@ class Solution {
     }
 }
 ```
+
+二分法
+
+```java
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int left = 0;
+        int right = n;
+        while(left < right){
+            int mid = left + (right - left) / 2;
+            if(!isBadVersion(mid)){
+                left = mid + 1;
+            } else right = mid;
+        }
+        return left;
+    }
+}
+```
+
+## 621. Task Scheduler
+
+```text
+TODO
+```
+
+## 785. Is Graph Bipartite
+
+给一个graph交替染色，用一个map来store每个node的颜色，在用DFS/BFS的过程中，终止条件发生在两个相邻的node同色。给个BFS的吧
+
+```java
+class Solution {
+    public boolean isBipartite(int[][] graph) {
+        int n = graph.length;
+        int[] color = new int[n];
+        Arrays.fill(color, - 1);
+        // iterate every uncolored node in this graph
+        // this is for disconnected component
+        for(int i = 0; i < graph.length; i++){
+            if(color[i] == -1){
+                Queue<Integer> q = new LinkedList<>();
+                color[i] = 0;
+                q.offer(i);
+                while(!q.isEmpty()){
+                    Integer top = q.poll();
+                    for(int nei : graph[top]){
+                        if(color[nei] == -1){
+                            q.offer(nei);
+                            color[nei] = color[top] ^ 1;
+                        } else if(color[nei] == color[top]) return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
+```
+
+## 282.  Expreesion Add Operators
+
+```text
+TODO
+```
+
+## 76. Minimum Window Substring
+
+```java
+class Solution {
+    public String minWindow(String s, String t) {   
+        HashMap<Character, Integer> map = new HashMap<>();
+        for(char c : t.toCharArray()){
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+        int count = map.size();
+        int left = 0;
+        int res = s.length() + 1;
+        int index = 0;
+        for(int right = 0; right < s.length(); right++){
+            char c = s.charAt(right);
+            if(map.containsKey(c)){
+                map.put(c, map.get(c) - 1);
+                if(map.get(c) == 0) count--;
+            }
+            while(count == 0){
+                if(res > right - left + 1){
+                    res = right - left + 1;
+                    index = left;
+                }
+                char cc = s.charAt(left++);
+                if(map.containsKey(cc)){
+                    map.put(cc, map.get(cc) + 1);
+                    if(map.get(cc) == 1) count++;
+                }
+            }
+        }
+        if(res == s.length() + 1){
+            return "";
+        } else{
+            return s.substring(index, index + res);
+        }
+    }
+}
+```
+
+## 173. Binary Search Tree Iterator
+
+```java
+class BSTIterator {
+    Stack<TreeNode> stack;
+    TreeNode cur = null;
+    public BSTIterator(TreeNode root) {
+        stack = new Stack();
+        cur = root;
+    }
+    
+    /** @return the next smallest number */
+    public int next() {
+        while(cur != null){
+            stack.push(cur);
+            cur = cur.left;
+        }
+        TreeNode top = stack.pop();
+        cur = top.right;
+        return top.val;
+    }
+    
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return !stack.isEmpty() || cur != null;
+    }
+}
+```
+
+
 
