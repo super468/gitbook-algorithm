@@ -385,5 +385,69 @@ class BSTIterator {
 }
 ```
 
+## 986. Interval List Intersections
 
+two pointers
+
+```java
+class Solution {
+    public int[][] intervalIntersection(int[][] A, int[][] B) {
+        int max = Math.max(A.length, B.length);
+        int[][] temp = new int[max * 2][2];
+        int pa = 0;
+        int pb = 0;
+        int count = 0;
+        while(pa < A.length && pb < B.length){
+            int starta = A[pa][0];
+            int startb = B[pb][0];
+            int enda = A[pa][1];
+            int endb = B[pb][1];
+            int start = Math.max(starta, startb);
+            int end = Math.min(enda, endb);
+            if(start <= end){
+                temp[count][0] = start;
+                temp[count][1] = end;
+                count++;
+            }
+            if(enda == end) pa++;
+            if(endb == end) pb++;
+        }
+        int[][] res = new int[count][2];
+        System.arraycopy(temp, 0, res, 0, count);
+        return res;
+    }
+}
+```
+
+## 340. Longest Substring with At Most K Distinct Characters
+
+{% page-ref page="../algorithm/two-pointers/sliding-window/longest-substring-with-at-most-k-distinct-characters.md" %}
+
+## 438. Find All Anagrams in a String
+
+```java
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        int[] map = new int[26];
+        int count = 0;
+        for(char c : p.toCharArray()){
+            if(map[c - 'a']++ == 0) count++;
+        }
+        int left = 0;
+        int right = 0;
+        List<Integer> res = new ArrayList<>();
+        while(right < s.length()){
+            if(--map[s.charAt(right) - 'a'] == 0) count--;
+            while(count == 0){
+                if(right - left + 1 == p.length()){
+                    res.add(left);
+                }
+                if(map[s.charAt(left++) - 'a']++ == 0) count++;
+            }
+            right++;
+        }
+        return res;
+    }
+}
+```
 
