@@ -128,7 +128,50 @@ class Solution {
 
 ### DFS
 
-```text
-TODO
+```java
+class Solution {
+    public String alienOrder(String[] words) {
+        int[][] map = new int[26][26];
+        for(String word : words){
+            for(char c : word.toCharArray()){
+                map[c - 'a'][c - 'a'] = 1;
+            }
+        }
+        for(int i = 1; i < words.length; i++){
+            String a = words[i - 1];
+            String b = words[i];
+            int min = Math.min(a.length(), b.length());
+            int j = 0;
+            while(j < min){
+                if(a.charAt(j) != b.charAt(j)){
+                    map[a.charAt(j) - 'a'][b.charAt(j) - 'a'] = 1;
+                    break;
+                }
+                j++;
+            }
+            if(j == min && a.length() > b.length()) return "";
+        }
+        int[] visited = new int[26];
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < 26; i++){
+            if(!DFS(map, i, visited, sb)) return "";
+        }
+        return sb.reverse().toString();
+        
+    }
+    public boolean DFS(int[][] map, int cur, int[] visited, StringBuilder sb){
+        if(map[cur][cur] == 0) return true;
+        visited[cur] = 1;
+        for(int i = 0; i < 26; i++){
+            if(i == cur || map[cur][i] == 0) continue;
+            if(visited[i] == 1) return false;
+            if(!DFS(map, i, visited, sb)) return false;
+        }
+        visited[cur] = 0;
+        map[cur][cur] = 0;
+        sb.append((char)(cur + 'a'));
+        return true;
+    }
+}
 ```
 
