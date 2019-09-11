@@ -462,3 +462,64 @@ class Solution {
 
 
 
+## 825. Friends Of Appropriate Ages
+
+counting sort idea
+
+```java
+class Solution {
+    public int numFriendRequests(int[] ages) {
+        int[] numinage = new int[121];
+        int[] suminage = new int[121];
+        int sum = 0;
+        for(int age : ages){
+            numinage[age]++;
+        }
+        for(int i = 1; i <= 120; i++){
+            suminage[i] = suminage[i - 1] + numinage[i];
+        }
+        for(int i = 15; i <= 120; i++){
+            int count = suminage[i] - suminage[i / 2 + 7];
+            sum += count * numinage[i] - numinage[i];
+        }
+        return sum;
+    }
+}
+```
+
+## 349. Intersection of Two Arrays
+
+1. use hashset O\(m + n\) O\(n\)
+2. sort and use two pointer O\(nlogn\) O\(1\)
+3. sort one and use binary search O\(nlogn\) O\(n\)
+
+## 350. Intersection of Two Arrays II
+
+follow up : 
+
+What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
+
+* If only nums2 cannot fit in memory, put all elements of nums1 into a HashMap, read chunks of array that fit into the memory, and record the intersections.
+* If both nums1 and nums2 are so huge that neither fit into the memory, sort them individually \(external sort\), then read 2 elements from each array at a time in memory, record intersections.
+
+## 98. Validate Binary Search Tree
+
+1. divide and conquer
+2. iterative version of 1 need 3 stacks to store the node, left value and right value
+3. inorder traversal
+
+```java
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        return isValid(root, null, null);
+    }
+    
+    public boolean isValid(TreeNode node, Integer left, Integer right){
+        if(node == null) return true;
+        if(left != null && left >= node.val) return false;
+        if(right != null && right <= node.val) return false;
+        return isValid(node.left, left, node.val) && isValid(node.right, node.val, right);
+    }
+}
+```
+
