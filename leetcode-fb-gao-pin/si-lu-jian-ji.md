@@ -495,6 +495,28 @@ class Solution {
 
 ## 350. Intersection of Two Arrays II
 
+```java
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int num : nums1){
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        int[] res = new int[nums1.length];
+        int index = 0;
+        for(int num : nums2){
+            if(map.containsKey(num)){
+                res[index++] = num;
+                map.put(num, map.get(num) - 1);
+                if(map.get(num) == 0) map.remove(num);
+            }
+        }
+        return Arrays.copyOf(res, index);
+    }
+    
+}
+```
+
 follow up : 
 
 What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
@@ -519,6 +541,108 @@ class Solution {
         if(left != null && left >= node.val) return false;
         if(right != null && right <= node.val) return false;
         return isValid(node.left, left, node.val) && isValid(node.right, node.val, right);
+    }
+}
+```
+
+## 31. Next Permutation
+
+这道题需要注意一个property：
+
+lexicographically最小的permutation其实是ascending order
+
+lexicographically最大的permutation其实是descending order
+
+我一开始也是从右往左扫，找到第一个a\[i - 1\] &lt; a\[i\]，此时
+
+![](../.gitbook/assets/image.png)
+
+只需要找到a\[i\]右边比a\[i-1\]大的最小的数，也就是要从右开始遍历至a\[i\]。因为a\[i\]到末尾已经是descending order了，当我们找到这个a\[j\]并将其与a\[i - 1\]替换后，其实没有必要sort a\[i:\]，只需要reverse一下就可以了
+
+```java
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n = nums.length;
+        int i = n - 2;
+        for(; i >= 0; i--){
+            if(nums[i] < nums[i + 1]){
+                for(int j = n - 1; j >= i + 1; j--){
+                    if(nums[j] > nums[i]){
+                        swap(nums, j, i);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        reverse(nums, i + 1, n - 1);
+    }
+    
+    public void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+    public void reverse(int[] nums, int i, int j){
+        while(i < j){
+            swap(nums, i, j);
+            i++;
+            j--;
+        }
+    }
+}
+```
+
+## 314. Binary Tree Vertical Order Traversal
+
+```java
+class Solution {
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if(root == null) return res;
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer> cQueue = new LinkedList<>();
+        TreeMap<Integer, List<Integer>> map = new TreeMap<>();
+        queue.offer(root);
+        cQueue.offer(0);
+        while(!queue.isEmpty() && !cQueue.isEmpty()){
+            for(int k = queue.size() - 1; k >= 0; k--){
+                TreeNode top = queue.poll();
+                int columns = cQueue.poll();
+                map.putIfAbsent(columns, new ArrayList<>());
+                map.get(columns).add(top.val);
+                if(top.left != null){
+                    queue.offer(top.left);
+                    cQueue.offer(columns - 1);
+                }
+                if(top.right != null){
+                    queue.offer(top.right);
+                    cQueue.offer(columns + 1);
+                }
+            }
+        }
+        for(Integer key : map.keySet()){
+            res.add(map.get(key));   
+        }
+        return res;
+    }
+}
+```
+
+## 896. Monotonic Array
+
+one pass
+
+```java
+class Solution {
+    public boolean isMonotonic(int[] A) {
+        boolean inc = true, dec = true;
+        for(int i = 1; i < A.length; i++){
+            inc &= A[i] >= A[i - 1];
+            dec &= A[i] <= A[i - 1];
+        }
+        return inc || dec;
     }
 }
 ```
