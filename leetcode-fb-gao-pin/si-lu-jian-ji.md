@@ -647,3 +647,35 @@ class Solution {
 }
 ```
 
+## 161. One Edit Distance
+
+```java
+class Solution {
+    public boolean isOneEditDistance(String s, String t) {
+        if(s.length() > t.length()) return isOneEditDistance(t, s);
+        int slen = s.length();
+        int tlen = t.length();
+        if(Math.abs(slen - tlen) > 1) return false;
+        int i = 0;
+        while(i < slen){
+            if(s.charAt(i) != t.charAt(i)){
+                if(slen != tlen)
+                    return s.substring(i).equals(t.substring(i + 1));
+                else
+                    return s.substring(i + 1).equals(t.substring(i + 1));
+            }
+            i++;
+        }
+        return slen + 1 == tlen;
+    }
+}
+```
+
+## 56. Merge Interval
+
+按start sort， 遍历
+
+## 958. Check Completeness of a Binary Tree
+
+BFS 遇到null之后判断剩下的是不是全是null
+
