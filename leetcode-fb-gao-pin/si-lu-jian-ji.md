@@ -679,3 +679,15 @@ class Solution {
 
 BFS 遇到null之后判断剩下的是不是全是null
 
+## 88. Merge Sorted Array
+
+merge from the end
+
+System.arraycopy\(int\[\] start, int startpos, int\[\] end, int endpos, int length\)
+
+## 42. Trapping Rain Water
+
+{% page-ref page="../algorithm/two-pointers/sort-colors/42.-trapping-rain-water.md" %}
+
+
+

@@ -559,7 +559,7 @@ class BSTIterator {
 
 ## 146. 颜色分类
 
-{% page-ref page="../algorithm/two-pointers/sort-colors.md" %}
+{% page-ref page="../algorithm/two-pointers/sort-colors/" %}
 
 ## 123. 单词搜索
 
