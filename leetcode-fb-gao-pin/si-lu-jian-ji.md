@@ -741,3 +741,133 @@ class Solution {
 }
 ```
 
+## 314. Shortest Distance from all Buildings
+
+这个题一开始我想的是从0 BFS 到每一个 1，其实应该反过来。假设0有m个，1有n个，从0到 1，走的次数是m\(k + n\), 从1到0，则是n\*m。这个K是average的从0到1的distance。也就是说，我们多出来了一个mk。大大降低了我们的速度。如果使用0到1，我们需要记录下所有building到每个house的distance，用累加得到的distance\[i\]\[j\]来表示。同样需要一个数组reached, 来表示该0能被多少building reached。
+
+优化的话，当0不能被之前的building访问到，那么我们永远也不访问它，并把它设为2。因为如果有1个house能够访问所有的building，那么这个联通量包含了所有的1和部分的0。其实这些部分的0也是可以访问到所有的1。所以当0不能访问所有的1时，它既不可能作为house也不可能成为house 到 building的path中一部分。
+
+```java
+class Solution {
+    int[][] directions = new int[][]{{-1, 0}, {1, 0}, {0, 1},{0, -1}};
+    int reached = 0;
+    boolean flag = false;
+    public int shortestDistance(int[][] grid) {
+        int count = 0;
+        int shortest = Integer.MAX_VALUE;
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dist = new int[m][n];
+        int[][] reached = new int[m][n];
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 1) count++;
+            }
+        flag = false;
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 1){
+                    BFS(grid, dist, reached, i, j, count);
+                    flag = true;
+                }
+            }
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 0 && reached[i][j] == count) 
+                    shortest = Math.min(shortest, dist[i][j]);
+            }
+        }
+        return shortest == Integer.MAX_VALUE ? -1 : shortest;
+    }
+    
+    public void BFS(int[][] grid, int[][] dist, int[][] reached, int i, int j, int count){
+        int[][] visited = new int[grid.length][grid[0].length];
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{i, j});
+        visited[i][j] = 1;
+        int step = 0;
+        while(!q.isEmpty()){
+            for(int k = q.size(); k > 0; k--){
+                int[] top = q.poll();
+                int row = top[0];
+                int col = top[1];
+                if(grid[row][col] == 0){
+                    dist[row][col] += step;
+                    reached[row][col]++;
+                    if(flag && reached[row][col] == 0){
+                        grid[row][col] = 2; 
+                        continue;
+                    }
+                }
+                for(int[] direction : directions){
+                    int x = row + direction[0];
+                    int y = col + direction[1];
+                    if(x < 0 || x >= grid.length || y < 0 || y >= grid[0].length || grid[x][y] != 0 || visited[x][y] == 1) continue;
+                    q.offer(new int[]{x, y});
+                    visited[x][y] = 1;
+                }
+            }
+            step++;
+        }
+    }
+}
+```
+
+## 133. Clone Graph
+
+```java
+class Solution {
+    public Node cloneGraph(Node node) {
+        if(node == null) return null;
+        HashMap<Node, Node> map = new HashMap<>();
+        DFS(node, map, new HashSet<>());
+        return map.get(node);
+    }
+    
+    public void DFS(Node node, HashMap<Node, Node> map, Set<Node> set){
+        if(!set.add(node)){
+            return;
+        }
+        Node copy = new Node(node.val, new ArrayList<>());
+        map.put(node, copy);
+        for(Node next : node.neighbors){
+            DFS(next, map, set);
+            copy.neighbors.add(map.get(next));
+        }
+    }
+}
+```
+
+## 885. Spiral Matrix III
+
+simulation，重点在于发现规律，当向左或者向右移动时，步数加一
+
+```java
+class Solution {
+    public int[][] spiralMatrixIII(int R, int C, int r0, int c0) {
+        // simulation
+        int[][] dirt = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        int step = 0;
+        int d = 0;
+        int r = r0, c = c0;
+        List<int[]> res = new ArrayList<>();
+        res.add(new int[]{r0, c0});
+        int count = 1;
+        while(count < R * C){
+            // important
+            if(d == 0 || d == 2) step++;
+            for(int i = 0; i < step; i++){
+                r += dirt[d][0];
+                c += dirt[d][1];
+                if(r >= 0 && r < R && c >= 0 && c < C){
+                    res.add(new int[]{r, c});
+                    count++;
+                }
+            }
+            d = (d + 1) % 4;
+        }
+        return res.toArray(new int[R * C][2]);
+    }
+}
+```
+
