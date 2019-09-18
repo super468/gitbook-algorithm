@@ -691,3 +691,53 @@ System.arraycopy\(int\[\] start, int startpos, int\[\] end, int endpos, int leng
 
 
 
+## 689. Maximum Sum of  3 Non-Overlapping Subarrays
+
+```text
+// 太难了，让我缓缓
+TODO
+```
+
+## 489. Robot Room Cleaner
+
+backtracking , 需要tracking robot的方向
+
+```java
+class Solution {
+    // up : 0, right: 90, down 180, left:270
+    public void cleanRoom(Robot robot) {
+        Set<String> set = new HashSet<>();
+        backtracking(robot, set, 0, 0, 0);
+    }
+    
+    
+    public void backtracking(Robot robot, Set<String> set, int i, int j, int dirc){
+        String str = i + "->" + j;
+        if(!set.add(str)) return;
+        robot.clean();
+        for(int k = 0; k < 4; k++){
+            int x = i;
+            int y = j;
+            if(robot.move()){
+                switch(dirc){
+                    case 0: x--; break;
+                    case 90: y++; break;
+                    case 180: x++; break;
+                    case 270: y--; break;
+                }
+                backtracking(robot, set, x, y, dirc);
+                robot.turnLeft();
+                robot.turnLeft();
+                robot.move();
+                robot.turnRight();
+                robot.turnRight();
+            }
+            
+            robot.turnRight();
+            dirc += 90;
+            dirc %= 360;
+        }
+    }
+}
+```
+
