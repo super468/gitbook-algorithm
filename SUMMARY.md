@@ -61,6 +61,8 @@
 * [Dynamic Programming](algorithm/dynamic-programming/README.md)
   * [Word Break](algorithm/dynamic-programming/word-break.md)
   * [Edit Distance](algorithm/dynamic-programming/edit-distance.md)
+  * [Longest Increasing Subsequence \(TODO\)](algorithm/dynamic-programming/longest-increasing-subsequence-todo.md)
+  * [Longest Arithmetic Sequence](algorithm/dynamic-programming/longest-arithmetic-sequence.md)
 * [Union Find](algorithm/union-find/README.md)
   * [Friend Circles](algorithm/union-find/untitled.md)
 * [Greedy](algorithm/greedy.md)

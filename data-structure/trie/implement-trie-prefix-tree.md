@@ -90,5 +90,9 @@ public class Trie {
 }
 ```
 
+Trie Tree 空间复杂度：O\(M^N\) m是字符的种类，N是平均字符串长度
 
+时间复杂度：O\(N\)
+
+HashSet的contains需要考虑gethashcode\(\) 和hashcollision之后的equals比较。
 

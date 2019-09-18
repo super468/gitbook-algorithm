@@ -871,3 +871,35 @@ class Solution {
 }
 ```
 
+## 1027. Longest Arithmetic Sequence
+
+{% page-ref page="../algorithm/dynamic-programming/longest-arithmetic-sequence.md" %}
+
+## 543. Diameter of Binary Tree
+
+类似leetcode 124 binary-tree-maximum-path-sum
+
+```java
+class Solution {
+    
+    private int max = 0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        singlePath(root);
+        return max - 1 > 0 ? max - 1 : 0;
+    }
+    
+    public int singlePath(TreeNode root){
+        if(root == null) return 0;
+        int left = singlePath(root.left);
+        int right = singlePath(root.right);
+        max = Math.max(max, left + right + 1);
+        return Math.max(left, right) + 1;
+    }
+    
+}
+```
+
+## 211. Add and Search Word - Data structure design
+
+trie tree implementation.
+
