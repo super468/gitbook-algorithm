@@ -53,7 +53,7 @@
 * [Sort](algorithm/sort/README.md)
   * [Topological Sort](algorithm/sort/topological-sort/README.md)
     * [Course Schedule\(TODO\)](algorithm/sort/topological-sort/course-schedule-todo.md)
-    * [Alien Dictionary\(TODO\)](algorithm/sort/topological-sort/alien-dictionary.md)
+    * [Alien Dictionary](algorithm/sort/topological-sort/alien-dictionary.md)
   * [QuickSort](algorithm/sort/quicksort/README.md)
     * [K Closest Points to Origin\(TODO\)](algorithm/sort/quicksort/k-closest-points-to-origin-todo.md)
 * [Divide and Conquer](algorithm/divide-and-conquer/README.md)
