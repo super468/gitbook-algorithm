@@ -2,11 +2,67 @@
 
 ## 301. Remove Invalid Parentheses
 
-TODO
+time O\(2^N\)
+
+space O\(N\)
+
+```java
+class Solution {
+    public List<String> removeInvalidParentheses(String s) {
+        List<String> res = new ArrayList<>();
+        dfs(s, 0, 0, new char[]{'(', ')'}, res);
+        return res;
+    }
+    
+    public void dfs(String s, int last_i, int last_j, char[] pairs, List<String> res){
+        int count = 0;
+        for(int i = last_i; i < s.length(); i++){
+            if(s.charAt(i) == pairs[0]) count++;
+            if(s.charAt(i) == pairs[1]) count--;
+            if(count < 0){
+                for(int j = last_j; j <= i; j++){
+                    if(s.charAt(j) == pairs[1] && (j == last_j || s.charAt(j - 1) != pairs[1])){
+                        dfs(s.substring(0, j) + s.substring(j + 1), i, j, pairs, res);
+                    }
+                }
+                return;
+            }
+        }
+        String reversed = new StringBuilder(s).reverse().toString();
+        if(pairs[0] == '('){
+            dfs(reversed, 0, 0, new char[]{')', '('}, res);
+        } else {
+            res.add(reversed);
+        }
+    }
+}
+```
 
 ## 273. Integer to English Words
 
-TODO
+```java
+class Solution {
+    private final String[] belowTen = new String[]{"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+    private final String[] belowTwenty = new String[]{"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    private final String[] belowHundred = new String[]{"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    public String numberToWords(int num) {
+        if(num == 0) return "Zero";
+        return helper(num);
+    }
+    
+    public String helper(int num){
+        String result = new String();
+        if(num < 10) result = belowTen[num];
+        else if(num < 20) result = belowTwenty[num - 10];
+        else if(num < 100) result = belowHundred[num / 10] + " " + helper(num % 10);
+        else if(num < 1000) result = helper(num / 100) + " Hundred " + helper(num % 100);
+        else if(num < 1000000) result = helper(num / 1000) + " Thousand " + helper(num % 1000);
+        else if(num < 1000000000) result = helper(num / 1000000) + " Million " + helper(num % 1000000);
+        else result = helper(num / 1000000000) + " Billion " + helper(num % 1000000000);
+        return result.trim();
+    }
+}
+```
 
 ## 953. Verifying an Alien Dictionary
 
