@@ -25,28 +25,24 @@ A solution set is:
 ```java
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
-        List<List<Integer>> result = new ArrayList<>();
-        for(int i = 0; i < nums.length - 2; i++){
-            //skip the duplicate target
-            if(i != 0 && nums[i] == nums[i - 1]) continue;
-            int j = i + 1, k = nums.length - 1, target = -nums[i];
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] > 0) break; // no such combination
+            if(i != 0 && nums[i] == nums[i - 1]) continue; // avoid duplicate
+            int target = -nums[i];
+            int j = i + 1, k = nums.length - 1;
             while(j < k){
                 int sum = nums[j] + nums[k];
-                if(target > sum){
-                    j++;
-                } else if(target < sum){
-                    k--;
-                } else {
-                    result.add(Arrays.asList(nums[i], nums[j], nums[k]));
-                    //move the pointer to avoid duplicates
-                    //pointers must move at least one step
-                    while(j < k && nums[j] == nums[++j]);
-                    while(k > i && nums[k] == nums[--k]);
-                }
+                if(target == sum){
+                    res.add(Arrays.asList(nums[i], nums[j++], nums[k--]));
+                    while(j < k && nums[j] == nums[j - 1]) j++;
+                    while(j < k && nums[k] == nums[k + 1]) k--;
+                } else if(target > sum) j++;
+                else k--;
             }
         }
-        return result;
+        return res;
     }
 }
 ```
