@@ -34,8 +34,8 @@ Output: ["eat","oath"]
 
 ## 复杂度
 
-* 时间：O\(m \* n \* 4 ^ wl\) wl是word的平均长度
-* 空间：O\(wl\) 这个也就是trie的平均深度
+* 时间：O\(m \* n \* 4 \* 3 ^ \(wl - 2\)\) wl是word的平均长度
+* 空间：O\(k\) k 是 total number of characters in word list
 
 ## 代码
 
