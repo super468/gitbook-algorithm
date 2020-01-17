@@ -13,6 +13,7 @@
 * [String](data-structure/string/README.md)
   * [Valid Palindrome II](data-structure/string/valid-palindrome-ii.md)
 * [Binary Tree](data-structure/binary-tree/README.md)
+  * [Binary Search Tree Summary](data-structure/binary-tree/binary-search-tree-summary.md)
   * [Preorder Traversal](data-structure/binary-tree/preorder-traversal.md)
   * [Inorder Traversal](data-structure/binary-tree/inorder-traversal.md)
   * [Postorder Traversal](data-structure/binary-tree/postorder-traversal.md)
